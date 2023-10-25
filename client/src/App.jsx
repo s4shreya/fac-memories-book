@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
+import { spacing } from '@mui/system';
 
 import memories from "./images/memories.png";
 import Posts from "./components/posts/Posts";
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <>
       <Container maxidth="lg">
-        <AppBar position="static" color="inherit">
+        <AppBar position="static" color="inherit" sx={{mb: 5}}>
           <Typography variant="h2" align="center">
             Memories Book
             <img src={memories} alt="memories" height="60" />
