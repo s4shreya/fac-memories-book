@@ -14,6 +14,8 @@ const Form = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    console.log(`post data is ${postData}`);
+    const data = postData;
   };
 
   const clear = () => {
