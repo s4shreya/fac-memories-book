@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FileBase from "react-file-base64";
+import { useDispatch } from 'react-redux';
 
 import { TextField, Button, Typography, Paper } from "@mui/material";
+import { createPost } from "../../actions/posts";
 
 const Form = () => {
+  const dispatch = useDispatch();
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -14,8 +17,8 @@ const Form = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+    dispatch(createPost(postData));
     console.log(`post data is ${postData}`);
-    const data = postData;
   };
 
   const clear = () => {

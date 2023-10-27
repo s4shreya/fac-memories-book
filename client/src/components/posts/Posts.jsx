@@ -5,10 +5,14 @@ import Post from "./post/post";
 const Posts = () => {
   const posts = useSelector(state => state.posts);
 
-  console.log(`posts array is: ${posts.posts}`);
+  console.log(`in posts, array: ${posts.posts}`);
 
   return (
     <div>
+      {posts.posts.map(post => {
+        <Post />
+        {console.log(`in map func ${post.tags}`)}
+      })}
       Posts
       <Post />
       <Post />

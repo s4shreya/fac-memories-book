@@ -6,8 +6,8 @@ export const getPosts = async (request, response) => {
         response.status(200).json(postMessages);
     }
     catch (error) {
-        response.status(500).json({message: `An error occurred:- ${error.message}`});
-        console.log(`An error occurred:- ${error}`);
+        response.status(500).json({message: `An error occurred in server/controllers/posts.js:- ${error.message}`});
+        console.log(`An error occurred in server/controllers/posts.js:- ${error}`);
     }
 };
 
@@ -24,7 +24,7 @@ export const createPost = async (request, response) => {
         response.status(201).json(newPost);
     }
     catch (error) {
-        response.status(409).json({message: `An error occurred:- ${error.message}`});
-        console.log(`An error occurred:- ${error}`);
+        response.status(409).json({message: `An error occurred in server/controllers/posts.js:- ${error.message}`});
+        console.log(`An error occurred in server/controllers/posts.js:- ${error}`);
     }
 };
