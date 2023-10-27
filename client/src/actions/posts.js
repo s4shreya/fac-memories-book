@@ -9,7 +9,6 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
     const { data } = await api.getPosts();
     return data;
-    // return { type: "FETCH_ALL", payload: data };
   } catch (error) {
     console.log(`An error occurred:- ${error}`);
     return error.message;
@@ -18,10 +17,8 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
 
 export const createPost = createAsyncThunk("posts/createPost", async (post) => {
   try {
-    console.log(`in try block of action, posst is ${post}`);
     const { data } = await api.createPost(post);
     return data;
-    // return { type: "CREATE", payload: data };
   } catch (error) {
     console.log(`An error occurred:- ${error}`);
     return error.message;
