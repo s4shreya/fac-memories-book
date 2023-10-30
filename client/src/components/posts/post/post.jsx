@@ -13,7 +13,7 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
-const Post = ({ post }) => {
+const Post = ({ post, setCurrentId }) => {
   console.log(`in posts component, posts is: ${post}`);
 
   return (
@@ -27,7 +27,7 @@ const Post = ({ post }) => {
         <Button
           style={{ color: "black", float: "right" }}
           size="small"
-          onClick={() => {}}
+          onClick={() => {setCurrentId(post._id)}}
         >
           <MoreHorizIcon fontSize="small" />
         </Button>

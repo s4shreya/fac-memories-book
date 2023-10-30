@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-import { getPosts, createPost } from "../actions/posts";
+import { getPosts, createPost, updatePost } from "../actions/posts";
 
 const initialState = {
   posts: [],
@@ -19,6 +19,11 @@ export const postsSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.posts = [...state.posts, action.payload];
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        state.posts = state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
+        );
       });
   },
 });
