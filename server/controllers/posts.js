@@ -8,11 +8,9 @@ export const getPosts = async (request, response) => {
     const postMessages = await PostMessage.find();
     response.status(200).json(postMessages);
   } catch (error) {
-    response
-      .status(500)
-      .json({
-        message: `An error occurred in server/controllers/posts.js:- ${error.message}`,
-      });
+    response.status(500).json({
+      message: `An error occurred in server/controllers/posts.js:- ${error.message}`,
+    });
     console.log(`An error occurred in server/controllers/posts.js:- ${error}`);
   }
 };
@@ -30,11 +28,9 @@ export const createPost = async (request, response) => {
     // status code: 201 - successful creation
     response.status(201).json(newPost);
   } catch (error) {
-    response
-      .status(409)
-      .json({
-        message: `An error occurred in server/controllers/posts.js:- ${error.message}`,
-      });
+    response.status(409).json({
+      message: `An error occurred in server/controllers/posts.js:- ${error.message}`,
+    });
     console.log(`An error occurred in server/controllers/posts.js:- ${error}`);
   }
 };
@@ -52,8 +48,22 @@ export const updatePost = async (request, response) => {
     return response.status(404).send("No post with this id.");
 
   // new: true // to get the updated version of post
-  const updatedPost = await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {
-    new: true,
-  });
+  const updatedPost = await PostMessage.findByIdAndUpdate(
+    _id,
+    { ...post, _id },
+    {
+      new: true,
+    }
+  );
   response.status(200).json(updatedPost);
+};
+
+// delete post with the given id
+export const deletePost = async (request, response) => {
+  const { id } = request.params;
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return response.status(404).send("No post with this id");
+
+  await PostMessage.findByIdAndRemove(id);
+  response.json({ message: "Post deleted successfully" });
 };

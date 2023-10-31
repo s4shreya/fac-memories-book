@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-import { getPosts, createPost, updatePost } from "../actions/posts";
+import { getPosts, createPost, updatePost, deletePost } from "../actions/posts";
 
 const initialState = {
   posts: [],
@@ -24,6 +24,9 @@ export const postsSlice = createSlice({
         state.posts = state.posts.map((post) =>
           post._id === action.payload._id ? action.payload : post
         );
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.posts = state.posts.filter((post) => post._id !== action.payload);
       });
   },
 });

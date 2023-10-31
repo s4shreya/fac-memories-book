@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import moment from "moment";
+import { deletePost } from '../../../actions/posts';
 
 import {
   Card,
@@ -14,6 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const Post = ({ post, setCurrentId }) => {
+  const dispatch = useDispatch();
 
   return (
     <Card>
@@ -54,7 +57,7 @@ const Post = ({ post, setCurrentId }) => {
           Like
           {post.likeCount}
         </Button>
-        <Button color="primary" size="small" onClick={() => {}}>
+        <Button color="primary" size="small" onClick={() => dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize="small" />
           Delete
         </Button>
