@@ -14,7 +14,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const Post = ({ post, setCurrentId }) => {
-  console.log(`in posts component, posts is: ${post}`);
 
   return (
     <Card>
@@ -33,6 +32,7 @@ const Post = ({ post, setCurrentId }) => {
         </Button>
       </div>
       <div>
+      <Typography variant="h5">{post.title}</Typography>
         <Typography variant="h6">{post.creator}</Typography>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}

@@ -27,15 +27,14 @@ export const createPost = createAsyncThunk("posts/createPost", async (post) => {
 });
 
 // action for updating post
-export const updatePost = createAsyncThunk(
-  "posts/updatePost",
-  async (id, post) => {
-    try {
-      const { data } = await api.updatePost(id, post);
-      return data;
-    } catch (error) {
-      console.log(`An error occurred in update post in actions:- ${error}`);
-      return error.message;
-    }
+export const updatePost = createAsyncThunk("posts/updatePost", async (post) => {
+  try {
+    const id = post.currentId;
+    const postData = post.postData;
+    const { data } = await api.updatePost(id, postData);
+    return data;
+  } catch (error) {
+    console.log(`Error:- ${error}`);
+    return error;
   }
-);
+});

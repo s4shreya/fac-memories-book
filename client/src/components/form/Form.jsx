@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TextField, Button, Typography, Paper } from "@mui/material";
 import { createPost, updatePost } from "../../actions/posts";
 
-const Form = ({ currentId }) => {
+const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const post = useSelector((state) =>
     currentId ? state.posts.posts.find((p) => p._id === currentId) : null
@@ -25,16 +25,29 @@ const Form = ({ currentId }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
+      const data = {currentId, postData};
+      dispatch(updatePost(data));
     } else dispatch(createPost(postData));
+    clear();
   };
 
-  const clear = () => {};
+  const clear = () => {
+    setCurrentId(null);
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    });
+  };
 
   return (
     <Paper>
       <form autoComplete="off" noValidate onSubmit={submitHandler}>
-        <Typography variant="h6">Creating a Memory</Typography>
+        <Typography variant="h6">
+          {currentId ? "Editing" : "Creating"} a Memory
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"

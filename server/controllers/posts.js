@@ -52,8 +52,8 @@ export const updatePost = async (request, response) => {
     return response.status(404).send("No post with this id.");
 
   // new: true // to get the updated version of post
-  const updatedPost = await PostMessage.findByIdAndUpdate(_id, post, {
+  const updatedPost = await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {
     new: true,
   });
-  response.status(200).json(updatePost);
+  response.status(200).json(updatedPost);
 };
